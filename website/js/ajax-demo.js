@@ -15,4 +15,13 @@ txtSend.addEventListener('click', () => {
     },
     'GET'
   );
+
+  ajax.send(
+    '/token',
+    {},
+    (data) => {
+      console.log('token信息', data.token);
+    },
+    'GET'
+  );
 });
