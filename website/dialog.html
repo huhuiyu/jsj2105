@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>对话框</title>
+  <style>
+    dialog::backdrop {
+      background-color: rgba(33, 9, 114, 0.7);
+    }
+
+    dialog {
+      border-width: 0px;
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btnOpen">打开对话框</button>
+  <div>
+    <dialog>
+      对话框
+
+      <form method="dialog">
+        <button>关闭</button>
+      </form>
+    </dialog>
+  </div>
+
+
+  <script src="./js/dialog.js"></script>
+</body>
+
+</html>

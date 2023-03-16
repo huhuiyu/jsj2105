@@ -9,7 +9,14 @@
 </head>
 
 <body>
+  <!-- 查询功能区 -->
+  <div>
+    <input type="text" id="txtDeptName" placeholder="部门名称模糊查询">
+    <button id="btnQuery">查询</button>
+    <button id="btnReset">重置</button>
+  </div>
 
+  <!-- 数据显示区 -->
   <table border="1" style="width: 100%;">
 
     <thead>
@@ -31,6 +38,13 @@
     </tbody>
 
   </table>
+
+  <!-- 分页区 -->
+  <div id="divPage">
+    <span>上一页</span>
+    <span></span>
+    <span>下一页</span>
+  </div>
 
 
   <script src="./js/dept.js" type="module"></script>

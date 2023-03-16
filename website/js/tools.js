@@ -1,5 +1,6 @@
 // 公用的工具类
 let tools = {
+  // 格式化日期（时间戳）
   formatDate: (date, format) => {
     // 格式默认为'yyyy-MM-dd'
     format = format ? format : 'yyyy-MM-dd';
@@ -25,6 +26,20 @@ let tools = {
     result = result.replace(/hh/g, hour);
     result = result.replace(/mm/g, minute);
     result = result.replace(/ss/g, second);
+    return result;
+  },
+  // 合并多个json为一个，...表示不定长参数
+  concatJson: (...jsons) => {
+    let result = {};
+    for (let i = 0; i < jsons.length; i++) {
+      let json = jsons[i];
+      // json特有的key循环
+      for (let key in json) {
+        console.log(key, json[key]);
+        // 复制给result
+        result[key] = json[key];
+      }
+    }
     return result;
   },
 };
