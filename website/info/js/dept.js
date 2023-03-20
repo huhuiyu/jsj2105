@@ -69,6 +69,26 @@ function showDept() {
     td = document.createElement('td');
     td.append(tools.formatDate(dept.lastupdate, 'yyyy年MM月dd日 hh:mm:ss'));
     tr.append(td);
+
+    // 操作列
+    td = document.createElement('td');
+    // 修改按钮
+    let btnModify = document.createElement('button');
+    btnModify.append('修改');
+    td.append(btnModify);
+    btnModify.addEventListener('click', () => {
+      console.log('要修改的信息：', dept);
+      showModify(dept);
+    });
+    // 删除按钮
+    let btnDel = document.createElement('button');
+    btnDel.append('删除');
+    td.append(btnDel);
+    btnDel.addEventListener('click', () => {
+      del(dept);
+    });
+
+    tr.append(td);
   }
 }
 
@@ -76,9 +96,9 @@ function showPage() {
   console.log('分页信息：', page);
   // ``是模板字符串，可以多行，可以通过${变量名称}填入对应的变量值
   spPageInfo.innerHTML = `
-    记录总数/当前页/总页数：
-    ${page.total}/${page.pageNumber}/${page.pageCount}
-  `;
+      记录总数/当前页/总页数：
+      ${page.total}/${page.pageNumber}/${page.pageCount}
+    `;
   // '记录总数/当前页/总页数：'+page.total+'/'+page.pageNumber...
 }
 
@@ -118,3 +138,80 @@ spNext.addEventListener('click', () => {
 });
 
 queryDept();
+
+// 添加的部分 ===========================
+let btnShowAdd = document.getElementById('btnShowAdd');
+let dialogAdd = document.getElementById('dialogAdd');
+let txtName = document.getElementById('txtName');
+let txtInfo = document.getElementById('txtInfo');
+let btnAdd = document.getElementById('btnAdd');
+
+btnShowAdd.addEventListener('click', () => {
+  dialogAdd.showModal();
+});
+
+btnAdd.addEventListener('click', () => {
+  let info = {
+    deptName: txtName.value,
+    deptInfo: txtInfo.value,
+  };
+
+  ajax.send('/manage/dept/add', info, (data) => {
+    alert(data.message);
+    // 成功添加就重置表单
+    if (data.success) {
+      txtName.value = '';
+      txtInfo.value = '';
+    }
+  });
+});
+
+// 修改部门信息的部分 ===========================、
+let deptId = -1; // 要修改的部门编号
+let dialogModify = document.getElementById('dialogModify');
+let txtMName = document.getElementById('txtMName');
+let txtMInfo = document.getElementById('txtMInfo');
+let btnSave = document.getElementById('btnSave');
+
+// 显示要修改的记录
+function showModify(dept) {
+  deptId = dept.deptId;
+  txtMName.value = dept.deptName;
+  txtMInfo.value = dept.deptInfo;
+  dialogModify.showModal();
+}
+
+btnSave.addEventListener('click', () => {
+  let minfo = {
+    deptId: deptId,
+    deptName: txtMName.value,
+    deptInfo: txtMInfo.value,
+  };
+  ajax.send('/manage/dept/update', minfo, (data) => {
+    alert(data.message);
+  });
+});
+
+// 删除记录的部分
+function del(dept) {
+  if (confirm('是否删除：' + dept.deptName + '？')) {
+    ajax.send(
+      '/manage/dept/delete',
+      {
+        deptId: dept.deptId,
+      },
+      (data) => {
+        alert(data.message);
+        // 重新查询数据！！！
+        page.pageNumber = 1;
+        queryDept();
+      }
+    );
+  }
+}
+
+// 添加/修改对话框关闭时要重新查询数据
+dialogAdd.addEventListener('close', queryDept);
+dialogModify.addEventListener('close', queryDept);
+
+// 作业：和上课同步完成班级和学生的信息管理功能
