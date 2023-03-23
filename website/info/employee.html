@@ -10,7 +10,47 @@
 </head>
 
 <body>
-  
+
+  <!-- 数据筛选的部分 -->
+  <div>
+
+    <input type="text" id="txtQName" placeholder="员工姓名">
+    <input type="text" id="txtQPhone" placeholder="员工电话">
+    <select id="selQOrder">
+      <option value="1">按照编号升序</option>
+      <option value="2" selected>按照编号降序</option>
+      <option value="3">按照部门名称升序</option>
+      <option value="4">按照部门名称降序</option>
+      <option value="5">分部门按照姓名排序</option>
+    </select>
+    <button id="btnQuery">查询</button>
+    <button id="btnReset">重置</button>
+  </div>
+
+  <!-- 显示数据部分 -->
+  <table style="width: 100%;">
+    <thead>
+      <tr>
+        <th>所属部门</th>
+        <th>员工名称</th>
+        <th>员工手机</th>
+        <th>信息最后修改时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+
+    <tbody id="tbData"></tbody>
+
+  </table>
+
+  <!-- 分页的部分 -->
+  <nav>
+    <a href="javascript:void(0)">第一页</a>
+    <a href="javascript:void(0)">上一页</a>
+    <span></span>
+    <a href="javascript:void(0)">下一页</a>
+    <a href="javascript:void(0)">最后一页</a>
+  </nav>
 
   <script src="js/employee.js" type="module"></script>
 </body>

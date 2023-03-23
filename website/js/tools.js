@@ -3,7 +3,7 @@ let tools = {
   // 格式化日期（时间戳）
   formatDate: (date, format) => {
     // 格式默认为'yyyy-MM-dd'
-    format = format ? format : 'yyyy-MM-dd';
+    format = format ? format : 'yyyy-MM-dd hh:mm:ss';
     // 不是标准的日期格式数据，就一定是时间戳
     if (typeof date != 'Date') {
       // 时间戳转换为日期对象
