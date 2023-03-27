@@ -13,7 +13,7 @@
 
   <!-- 数据筛选的部分 -->
   <div>
-
+    <button id="btnQDept">选择部门</button>
     <input type="text" id="txtQName" placeholder="员工姓名">
     <input type="text" id="txtQPhone" placeholder="员工电话">
     <select id="selQOrder">
@@ -25,6 +25,7 @@
     </select>
     <button id="btnQuery">查询</button>
     <button id="btnReset">重置</button>
+    <button id="btnShowAdd">添加</button>
   </div>
 
   <!-- 显示数据部分 -->
@@ -51,6 +52,49 @@
     <a href="javascript:void(0)">下一页</a>
     <a href="javascript:void(0)">最后一页</a>
   </nav>
+
+  <!-- 部门选择功能 -->
+  <dialog id="deptDialog">
+    <form method="dialog" style="display: none;"></form>
+
+    <div>
+      <input type="text" id="txtDQuery" placeholder="部门名称">
+      <button id="btnDFind">查询</button>
+      <button id="btnCloseDept">关闭</button>
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>部门名称</th>
+            <th>选择</th>
+          </tr>
+        </thead>
+
+        <tbody id="tbDeptData"></tbody>
+
+      </table>
+    </div>
+
+  </dialog>
+
+  <dialog id="addDialog">
+    <form method="dialog"></form>
+
+    <div>
+      <button id="btnADept">选择部门</button>
+      <br>
+      <input type="text" id="txtAName" placeholder="姓名">
+      <br>
+      <input type="text" id="txtAPhone" placeholder="电话">
+      <br>
+      <button id="btnAdd">添加</button>
+      <button id="btnAClose">关闭</button>
+    </div>
+
+
+  </dialog>
+
 
   <script src="js/employee.js" type="module"></script>
 </body>
