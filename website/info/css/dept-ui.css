@@ -1,0 +1,9 @@
+.a01 {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+td .btn {
+  margin: 0px 0.5rem;
+}

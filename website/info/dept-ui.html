@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>部门管理带ui</title>
+  <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
+
+  <link rel="stylesheet" href="./css/dept-ui.css">
+</head>
+
+<body>
+
+  <div class="container-fluid">
+
+    <!-- 查询功能区 -->
+    <div class="row a01">
+      <div class="col-auto">
+        <input class="form-control" type="text" id="txtDeptName" placeholder="部门名称模糊查询">
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary" id="btnQuery">查询</button>
+        <button class="btn btn-danger" id="btnReset">重置</button>
+        <button class="btn btn-info" id="btnShowAdd">添加</button>
+      </div>
+    </div>
+
+    <!-- 数据显示区 -->
+    <div>
+      <table class="table table-bordered table-hover table-striped">
+
+        <thead>
+          <tr>
+            <th>部门编号</th>
+            <th>部门名称</th>
+            <th>部门信息</th>
+            <th>信息最后修改时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+
+        <tbody id="tbDept"></tbody>
+
+      </table>
+    </div>
+
+    <!-- 分页区 -->
+    <ul id="divPage" class="pagination">
+      <li class="page-item">
+        <a class="page-link" href="javascript:void(0)">上一页</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="javascript:void(0)"></a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="javascript:void(0)">下一页</a>
+      </li>
+    </ul>
+
+  </div>
+
+  <script src="../bootstrap/popper.min.js"></script>
+  <script src="../bootstrap/bootstrap.min.js"></script>
+
+  <script src="./js/dept-ui.js" type="module"></script>
+
+</body>
+
+</html>
