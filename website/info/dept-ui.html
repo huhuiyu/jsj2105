@@ -16,14 +16,16 @@
   <div class="container-fluid">
 
     <!-- 查询功能区 -->
-    <div class="row a01">
-      <div class="col-auto">
+    <div class="a01">
+      <div class="p-1 input-group">
+        <span class="input-group-text">部门名称</span>
         <input class="form-control" type="text" id="txtDeptName" placeholder="部门名称模糊查询">
+        <span class="input-group-text">@</span>
       </div>
-      <div class="col-auto">
+      <div class="p-1 input-group">
         <button class="btn btn-primary" id="btnQuery">查询</button>
         <button class="btn btn-danger" id="btnReset">重置</button>
-        <button class="btn btn-info" id="btnShowAdd">添加</button>
+        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#addDialog" id="btnShowAdd">添加</button>
       </div>
     </div>
 
@@ -59,6 +61,45 @@
       </li>
     </ul>
 
+  </div>
+
+  <!-- 添加的对话框 -->
+  <div id="addDialog" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">添加部门</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="m-3">
+            <input class="form-control" type="text" id="txtName" placeholder="部门名称">
+          </div>
+          <div class="m-3">
+            <input class="form-control" type="text" id="txtInfo" placeholder="部门信息">
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+          <button type="button" id="btnAdd" class="btn btn-primary">添加</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- alert信息 -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">服务器信息</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Hello, world! This is a toast message.
+      </div>
+    </div>
   </div>
 
   <script src="../bootstrap/popper.min.js"></script>

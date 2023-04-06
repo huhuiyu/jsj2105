@@ -133,4 +133,45 @@ spNext.addEventListener('click', () => {
 
 //#endregion
 
+//#region 添加的部分
+let dialogAdd = document.getElementById('addDialog');
+// 模态框特定事件（对话框隐藏事件）
+dialogAdd.addEventListener('hide.bs.modal', () => {
+  page.pageNumber = 1;
+  queryDept();
+});
+
+let txtName = document.getElementById('txtName');
+let txtInfo = document.getElementById('txtInfo');
+let btnAdd = document.getElementById('btnAdd');
+
+btnAdd.addEventListener('click', () => {
+  let info = {
+    deptName: txtName.value,
+    deptInfo: txtInfo.value,
+  };
+
+  ajax.send('/manage/dept/add', info, (data) => {
+    showAlert(data.message);
+    // 成功添加就重置表单
+    if (data.success) {
+      txtName.value = '';
+      txtInfo.value = '';
+    }
+  });
+});
+
+//#endregion
+
+//#region alert对话框部分
+let liveToast = document.getElementById('liveToast');
+let liveToastMessage = document.querySelector('#liveToast .toast-body');
+const toast = new bootstrap.Toast(liveToast);
+
+function showAlert(message) {
+  liveToastMessage.innerHTML = message;
+  toast.show();
+}
+//#endregion
+
 queryDept();

@@ -1,10 +1,6 @@
 import ajax from '../../js/ajax.js';
 
-let spUserName = document.getElementById('spUserName');
-let spLoginName = document.getElementById('spLoginName');
-let divInfo = document.getElementById('divInfo');
-
-// 用户信息保护三个部分
+// 用户信息包含三个部分
 let tbUser = {};
 let tbUserInfo = {};
 let userOtherInfo = {};
@@ -27,24 +23,22 @@ function queryUserInfo() {
 }
 
 // 显示用户信息
-function showUserInfo() {
-  spUserName.innerHTML = tbUser.nickname;
+let btnUsername = document.querySelector('#divMenu > .dropdown-toggle');
+let spUser = document.getElementById('spUser');
 
-  spLoginName.innerHTML = tbUser.username;
-  divInfo.append(JSON.stringify(tbUser));
-  divInfo.append(document.createElement('br'));
-  divInfo.append(JSON.stringify(tbUserInfo));
-  divInfo.append(document.createElement('br'));
-  divInfo.append(JSON.stringify(userOtherInfo));
+function showUserInfo() {
+  btnUsername.innerHTML = tbUser.nickname;
+  spUser.innerHTML = `${tbUser.username}(${tbUser.nickname}-${tbUser.role})`;
 }
 
 // 安全退出
+let spLogout = document.getElementById('spLogout');
 function logout() {
   ajax.send('/user/auth/logout', {}, () => {
     location.href = './login.html';
   });
 }
 
-document.getElementById('alogout').addEventListener('click', logout);
+spLogout.addEventListener('click', logout);
 
 queryUserInfo();
