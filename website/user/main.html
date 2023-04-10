@@ -12,6 +12,9 @@
 
 <body>
   <div class="container-fluid">
+    <!-- https://service.huhuiyu.top/teach_project_service/user/file/download?fid=2 -->
+    <!-- 用户头像 -->
+    <img id="imgLogo" src="https://ts1.cn.mm.bing.net/th/id/R-C.1968d99a60deadbf2ab59a449c8cbe00?rik=b5tp3T4BlLyaww&riu=http%3a%2f%2fis1.mzstatic.com%2fimage%2fthumb%2fPurple1%2fv4%2f8b%2fec%2f20%2f8bec203c-b7d5-8214-8323-6b9f32d26788%2fmzl.ytvxhekz.png%2f0x0ss-85.jpg&ehk=m2Hv2rm0bnkMg9tkci9bOKI5uFKxBDJICL%2bmRc1ILCc%3d&risl=&pid=ImgRaw&r=0" alt="">
 
     <!-- 菜单 -->
     <div id="divMenu" class="btn-group m-1">
@@ -26,6 +29,8 @@
         <li><span id="spLogout" class="dropdown-item">安全退出</span></li>
       </ul>
     </div>
+
+    <div id="divUserInfo"></div>
 
   </div>
 
@@ -59,9 +64,20 @@
           </div>
 
           <div class="m-2">
+
             <div class="form-check form-check-inline">
-              <input type="radio" class="form-check-input">
+              <input id="sexm" name="sex" type="radio" class="form-check-input">
+              <label for="sexm">男性</label>
             </div>
+            <div class="form-check form-check-inline">
+              <input id="sexf" name="sex" type="radio" class="form-check-input">
+              <label for="sexf">女性</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input id="sexn" name="sex" type="radio" class="form-check-input">
+              <label for="sexn">保密</label>
+            </div>
+
           </div>
 
         </div>
@@ -78,6 +94,18 @@
   </div>
 
 
+  <!-- alert信息 -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">服务器信息</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Hello, world! This is a toast message.
+      </div>
+    </div>
+  </div>
 
 
   <script src="../bootstrap/popper.min.js"></script>
