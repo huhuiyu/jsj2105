@@ -6,16 +6,135 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>员工管理</title>
+  <!-- ui的依赖 -->
   <link rel="stylesheet" href="./bootstarp/bootstrap.min.css">
+
   <link rel="stylesheet" href="./css/employee.css">
 </head>
 
 <body>
+  <div class="container-fluid">
+    <div class="p-3 text-end">
+      <span id="btnShowAdd" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDialog">添加</span>
+    </div>
 
-  
+    <!-- 数据表格显示 -->
+    <table class="table table-hover">
+
+      <thead>
+        <tr>
+          <th>部门名称</th>
+          <th>员工名称</th>
+          <th>员工手机</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+
+      <tbody id="tbData"></tbody>
 
 
+    </table>
 
+    <!-- 员工分页的部分 -->
+    <nav id="epage" class="pagination">
+      <span class="page-link">上一页</span>
+      <span class="page-link"></span>
+      <span class="page-link">下一页</span>
+    </nav>
+
+
+  </div>
+
+
+  <!-- 添加的对话框 -->
+  <div id="addDialog" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">添加员工</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="p-2">
+            <button id="btnADept" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deptDialog">选择部门</button>
+            <span id="spADept"></span>
+          </div>
+
+          <div class="p-2">
+            <input id="txtAName" type="text" class="form-control" placeholder="员工名称">
+          </div>
+
+          <div class="p-2">
+            <input id="txtAPhone" type="text" class="form-control" placeholder="手机">
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+          <button id="btnAdd" type="button" class="btn btn-primary">
+            保存
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 部门的列表（弹出对话框） -->
+  <div id="deptDialog" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">选择部门</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <table class="table table-hover">
+
+            <thead>
+              <th>部门名称</th>
+              <th>选择</th>
+            </thead>
+
+            <tbody id="tbDept"></tbody>
+
+          </table>
+
+          <!-- 部门分页的部分 -->
+          <nav id="dpage" class="pagination">
+            <span class="page-link">上一页</span>
+            <span class="page-link"></span>
+            <span class="page-link">下一页</span>
+          </nav>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+          <button type="button" class="btn btn-primary">
+            查询
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- alert信息 -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">服务器信息</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Hello, world! This is a toast message.
+      </div>
+    </div>
+  </div>
+
+  <!-- ui的依赖 -->
   <script src="./bootstarp/popper.min.js"></script>
   <script src="./bootstarp/bootstrap.min.js"></script>
 

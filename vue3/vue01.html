@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue3演示</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{title}}</h1>
+    <input type="text" v-model="username" placeholder="请输入用户名">
+    <span>欢迎：{{username}}</span>
+    <hr>
+    <table>
+      <thead>
+        <tr>
+          <th>登录名</th>
+          <th>用户名</th>
+          <th>手机</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr v-for="d in list">
+          <td>{{d.username}}</td>
+          <td>{{d.nickname}}</td>
+          <td style="color:blue">{{d.phone}}</td>
+          <td>
+            <!-- <a href="">{{d.username}}</a> -->
+            <button @click="showModify(d)">修改</button>
+            <button>删除</button>
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+    <div v-if="visible">
+      <hr>
+      {{modifyInfo}}
+      <hr>
+      <input type="text" v-model="modifyInfo.username">
+      <input type="text" v-model="modifyInfo.nickname">
+      <input type="text" v-model="modifyInfo.phone">
+      <button @click="visible=false">关闭</button>
+    </div>
+
+  </div>
+
+
+  <script src="./js/vue01.js" type="module"></script>
+
+</body>
+
+</html>
