@@ -19,6 +19,19 @@ let page = {
 // 员工列表
 let elist = [];
 
+let btnQDept = document.getElementById('btnQDept');
+let spQDept = document.getElementById('spQDept');
+let btnQuery = document.getElementById('btnQuery');
+
+btnQDept.addEventListener('click', () => {
+  mode = 1;
+  queryDept();
+});
+
+btnQuery.addEventListener('click', () => {
+  queryEmployee();
+});
+
 // 查询员工的方法
 function queryEmployee() {
   ajax.send(
@@ -60,6 +73,16 @@ function showEmployee() {
     td = document.createElement('td');
     td.append(emp.phone);
     tr.append(td);
+
+    td = document.createElement('td');
+    let btnDel = document.createElement('span');
+    btnDel.classList.add('btn', 'btn-danger', 'm-1');
+    btnDel.innerHTML = '删除';
+    td.append(btnDel);
+    tr.append(td);
+    btnDel.addEventListener('click', () => {
+      del(emp);
+    });
   }
 }
 
@@ -168,6 +191,12 @@ function showDept() {
         // 关闭部门对话框，并显示添加对话框
         deptDialog.toggle();
         addDialog.toggle();
+      } else if (mode == 1) {
+        // 查询模式
+        queryInfo.deptId = dept.deptId;
+        spQDept.innerHTML = dept.deptName;
+        // 关闭部门对话框
+        deptDialog.toggle();
       }
     });
 
@@ -238,4 +267,30 @@ btnAdd.addEventListener('click', () => {
 
 //#endregion
 
+//#region  删除的部分
+let delDialog = new bootstrap.Modal('#delDialog');
+let delBody = document.querySelector('#delDialog .modal-body');
+let btnDelInfo = document.getElementById('btnDelInfo');
+let delInfo;
+
+function del(info) {
+  delInfo = { employeeId: info.employeeId };
+  delBody.innerHTML = `
+    是否删除：
+    ${info.dept.deptName}
+    的
+    ${info.employeeName}
+  `;
+  delDialog.toggle();
+}
+
+btnDelInfo.addEventListener('click', () => {
+  ajax.send('/manage/employee/delete', delInfo, (data) => {
+    showAlert(data.message);
+    delDialog.toggle();
+    queryEmployee();
+  });
+});
+
+//#endregion
 queryEmployee();

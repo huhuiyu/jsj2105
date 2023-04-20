@@ -22,7 +22,17 @@
         Action
       </button>
       <ul class="dropdown-menu">
-        <li><span data-bs-toggle="modal" data-bs-target="#userDialog" class="dropdown-item" id="spUser"></span></li>
+
+        <li>
+          <span data-bs-toggle="modal" data-bs-target="#userDialog" class="dropdown-item" id="spUser"></span>
+        </li>
+
+        <li>
+          <span data-bs-toggle="modal" data-bs-target="#emailDialog" class="dropdown-item">
+            绑定邮箱
+          </span>
+        </li>
+
         <li>
           <hr class="dropdown-divider">
         </li>
@@ -34,6 +44,7 @@
 
   </div>
 
+  <!-- 修改用户信息的对话框 -->
   <div id="userDialog" class="modal fade" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -87,6 +98,44 @@
           </button>
           <button id="btnSave" type="button" class="btn btn-primary">
             保存
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 修改邮箱的对话框 -->
+  <div id="emailDialog" class="modal fade" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">邮箱绑定</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="m-2">
+            <input class="form-control" type="text" id="txtEmail" placeholder="邮箱">
+          </div>
+
+          <div class="m-2">
+
+            <div class="input-group">
+
+              <input class="form-control" type="text" id="txtCode" placeholder="邮箱验证码">
+              <span id="btnCode" class="input-group-text btn btn-secondary">获取验证码</span>
+
+            </div>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            关闭
+          </button>
+          <button id="btnSaveEmail" type="button" class="btn btn-primary">
+            确认绑定
           </button>
         </div>
       </div>

@@ -14,7 +14,11 @@
 
 <body>
   <div class="container-fluid">
+
     <div class="p-3 text-end">
+      <span id="btnQDept" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#deptDialog">部门选择</span>
+      <span id="spQDept"></span>
+      <span id="btnQuery" class="btn btn-danger">查询</span>
       <span id="btnShowAdd" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDialog">添加</span>
     </div>
 
@@ -114,6 +118,28 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
           <button type="button" class="btn btn-primary">
             查询
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 删除的对话框 -->
+  <div id="delDialog" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">删除员工</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+          <button type="button" id="btnDelInfo" class="btn btn-primary">
+            删除
           </button>
         </div>
       </div>

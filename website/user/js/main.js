@@ -49,7 +49,9 @@ function showUserInfo() {
     注册时间：${regDate}/${userOtherInfo.regDays}天<br>
     qq:${tbUserInfo.qq}<br>
     微信：${tbUserInfo.wechat}<br>
-    ${tbUserInfo.info}
+    用户简介：${tbUserInfo.info} <br>
+    邮箱：${tbUserInfo.email}<br>
+    手机号：${tbUserInfo.phone}<br>
   `;
 }
 
@@ -130,6 +132,40 @@ function showAlert(message) {
   liveToastMessage.innerHTML = message;
   toast.show();
 }
+//#endregion
+
+//#region 绑定邮箱
+let txtEmail = document.getElementById('txtEmail');
+let txtCode = document.getElementById('txtCode');
+let btnCode = document.getElementById('btnCode');
+let btnSaveEmail = document.getElementById('btnSaveEmail');
+
+btnCode.addEventListener('click', () => {
+  ajax.send(
+    '/tool/sendEmailCode',
+    {
+      email: txtEmail.value,
+    },
+    (data) => {
+      showAlert(data.message);
+    }
+  );
+});
+
+btnSaveEmail.addEventListener('click', () => {
+  ajax.send(
+    '/user/auth/updateUserEmail',
+    {
+      email: txtEmail.value,
+      code: txtCode.value,
+    },
+    (data) => {
+      showAlert(data.message);
+      queryUserInfo();
+    }
+  );
+});
+
 //#endregion
 
 queryUserInfo();
