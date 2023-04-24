@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用户记事本</title>
+  <link rel="stylesheet" href="../iconfont/iconfont.css">
+  <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
+</head>
+
+<body>
+
+  <div class="container-fluid">
+
+
+    <!-- 数据呈现的部分 -->
+    <table class="table table-hover">
+
+      <thead>
+        <tr>
+          <th>标题</th>
+          <th>内容</th>
+          <th>最后修改时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+
+      <tbody id="tbData"></tbody>
+
+
+    </table>
+
+  </div>
+
+
+  <!-- alert信息 -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">服务器信息</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Hello, world! This is a toast message.
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../bootstrap/popper.min.js"></script>
+  <script src="../bootstrap/bootstrap.min.js"></script>
+
+  <script src="./js/notepad.js" type="module"></script>
+</body>
+
+</html>

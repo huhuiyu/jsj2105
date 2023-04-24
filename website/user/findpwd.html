@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>找回密码</title>
+  <link rel="stylesheet" href="../iconfont/iconfont.css">
   <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
 
   <link rel="stylesheet" href="./css/findpwd.css">
@@ -13,14 +14,68 @@
 
 <body>
 
-  <div>
+  <div class="main-box">
 
     <div class="card">
-      找回密码
+      <div class="list-group list-group-flush">
+        <div class="list-group-item text-bg-danger">找回用户密码</div>
+
+        <div class="list-group-item">
+
+          <div class="m-2">
+            <div class="input-group">
+              <span class="input-group-text iconfont text-bg-danger">&#xeb26;</span>
+              <input id="txtName" type="text" class="form-control" placeholder="用户名">
+            </div>
+          </div>
+
+          <div class="m-2">
+            <div class="input-group">
+              <span class="input-group-text iconfont text-bg-danger">&#xe658;</span>
+              <input id="txtCode" type="text" class="form-control" placeholder="邮箱验证码">
+              <span id="btnCode" class="input-group-text btn text-bg-danger">获取邮箱验证码</span>
+            </div>
+          </div>
+
+          <div class="m-2">
+            <div class="input-group">
+              <span class="input-group-text iconfont text-bg-danger">&#xeb26;</span>
+              <input id="txtPwd" type="password" class="form-control" placeholder="新密码">
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="list-group-item text-end">
+          <span class="btn btn-outline-danger">
+            重填 <i class="iconfont">&#xe6a8;</i>
+          </span>
+
+          <span class="btn btn-danger" id="btnOk">
+            确定 <i class="iconfont">&#xe637;</i>
+          </span>
+
+          <a href="login.html" class="btn btn-link text-danger">返回登录</a>
+        </div>
+      </div>
     </div>
 
   </div>
 
+
+  <!-- alert信息 -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">服务器信息</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Hello, world! This is a toast message.
+      </div>
+    </div>
+  </div>
 
   <script src="../bootstrap/popper.min.js"></script>
   <script src="../bootstrap/bootstrap.min.js"></script>
