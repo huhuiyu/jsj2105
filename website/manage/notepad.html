@@ -14,6 +14,35 @@
 
   <div class="container-fluid">
 
+    <div class="row p-1 d-flex justify-content-end">
+
+      <div class="col-auto">
+        <input id="txtQTitle" type="text" class="form-control" placeholder="标题模糊查询">
+      </div>
+
+      <div class="col-auto">
+        <div class="input-group">
+          <i class="input-group-text iconfont">&#xeb26;</i>
+          <input id="txtQInfo" type="text" class="form-control" placeholder="内容模糊查询">
+        </div>
+      </div>
+
+      <div class="col-auto btn-group">
+        <span id="btnQuery" class="btn btn-success">
+          查询 <i class="iconfont">&#xe60b;</i>
+        </span>
+
+        <span id="btnReset" class="btn btn-danger">
+          重置 <i class="iconfont">&#xe6a8;</i>
+        </span>
+
+        <span data-bs-toggle="modal" data-bs-target="#addDialog" class="btn btn-primary">
+          添加 <i class="iconfont">&#xe657;</i>
+        </span>
+      </div>
+
+    </div>
+
 
     <!-- 数据呈现的部分 -->
     <table class="table table-hover">
@@ -32,6 +61,86 @@
 
     </table>
 
+    <!-- 分页的部分 -->
+    <nav class="pagination d-flex justify-content-center" id="navPage">
+
+      <span class="page-item">
+        <a href="javascript:void(0)" class="page-link">上一页</a>
+      </span>
+      <span class="page-item">
+        <a href="javascript:void(0)" class="page-link"></a>
+      </span>
+      <span class="page-item">
+        <a href="javascript:void(0)" class="page-link">下一页</a>
+      </span>
+
+    </nav>
+
+
+  </div>
+
+  <!-- 添加的对话框 -->
+  <div id="addDialog" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">添加记事本</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="p-2">
+            <input id="txtATitie" type="text" class="form-control" placeholder="标题">
+          </div>
+
+          <div class="p-2">
+            <input id="txtAInfo" type="text" class="form-control" placeholder="内容">
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+          <button id="btnAdd" type="button" class="btn btn-primary">
+            保存
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 修改的对话框 -->
+  <div id="modifyDialog" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">修改记事本</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="p-2">
+            <input id="txtMTitie" type="text" class="form-control" placeholder="标题">
+          </div>
+
+          <div class="p-2">
+            <input id="txtMInfo" type="text" class="form-control" placeholder="内容">
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+          <button id="btnModify" type="button" class="btn btn-primary">
+            保存
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
 
