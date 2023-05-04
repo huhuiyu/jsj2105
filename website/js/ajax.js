@@ -58,6 +58,8 @@ const ajax = {
         callback({ success: false, message: '请求发生错误' });
       });
   },
+  // ajax的文件上传需要单独处理
+  sendFile: (file, fileinfo, callback) => {},
 };
 
 export default ajax;

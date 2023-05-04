@@ -42,6 +42,21 @@ let tools = {
     }
     return result;
   },
+  // 获取文件，通过回调函数返回选中的文件
+  openFile: (cb) => {
+    let efile = document.createElement('input');
+    efile.setAttribute('type', 'file');
+
+    efile.addEventListener('change', () => {
+      // 用户有选中文件的情况
+      if (efile.files && efile.files.length > 0) {
+        // 将文件通过回调函数回传
+        cb(efile.files[0]);
+      }
+    });
+
+    efile.click();
+  },
 };
 
 export default tools;
