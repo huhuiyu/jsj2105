@@ -62,6 +62,30 @@ function showData() {
     td = document.createElement('td');
     td.append(tools.formatDate(info.lastupdate));
     tr.append(td);
+
+    // 操作
+    td = document.createElement('td');
+    // 修改按钮
+    let btn01 = document.createElement('span');
+    btn01.classList.add('btn', 'btn-primary', 'btn-sm', 'me-1');
+    // btn01.setAttribute('data-bs-toggle', 'modal');
+    // btn01.setAttribute('data-bs-target', '#modifyDialog');
+    btn01.append('修改');
+    td.append(btn01);
+    btn01.addEventListener('click', () => {
+      showModiy(info);
+    });
+
+    // 删除按钮
+    let btn02 = document.createElement('span');
+    btn02.classList.add('btn', 'btn-danger', 'btn-sm');
+    btn02.append('删除');
+    td.append(btn02);
+    btn02.addEventListener('click', () => {
+      showDel(info);
+    });
+
+    tr.append(td);
   }
 }
 
@@ -141,22 +165,65 @@ let txtMInfo = document.getElementById('txtMInfo');
 let btnModify = document.getElementById('btnModify');
 
 let modifyInfo = {};
+// bootstarp的对象
+let mdialog = new bootstrap.Modal(modifyDialog);
 
 function showModiy(info) {
   modifyInfo = info;
+  txtMTitie.value = info.title;
+  txtMInfo.value = info.info;
+  // bootstarp对象的方法
+  mdialog.toggle();
 }
+
+btnModify.addEventListener('click', () => {
+  modifyInfo.title = txtMTitie.value;
+  modifyInfo.info = txtMInfo.value;
+
+  ajax.send('/user/note/update', modifyInfo, (data) => {
+    showAlert(data.message);
+  });
+});
 
 modifyDialog.addEventListener('hide.bs.modal', query);
 
 //#endregion
 
 //#region 删除的部分
+let delDialog = document.getElementById('delDialog');
+let delDialogBody = document.querySelector('#delDialog .modal-body');
+let btnDel = document.getElementById('btnDel');
+
+let ddialog = new bootstrap.Modal(delDialog);
+
 let delInfo = {};
 
 function showDel(info) {
   delInfo = info;
+  delDialogBody.innerHTML = `是否删除：${delInfo.title}？`;
+  ddialog.toggle();
 }
+
+btnDel.addEventListener('click', () => {
+  ddialog.toggle();
+  ajax.send(
+    '/user/note/delete',
+    {
+      unid: delInfo.unid,
+    },
+    (data) => {
+      showAlert(data.message);
+      page.pageNumber = 1;
+      query();
+    }
+  );
+});
 
 //#endregion
 
 query();
+
+// 删除记录的查询部分自己完成
+ajax.send('/user/note/queryAllDeleted', {}, (data) => {
+  console.log('删除的记录：', data);
+});
