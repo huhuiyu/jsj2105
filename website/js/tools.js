@@ -59,4 +59,8 @@ let tools = {
   },
 };
 
+let info = {};
+
 export default tools;
+
+export { tools as tools, info as info };

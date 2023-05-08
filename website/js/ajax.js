@@ -59,7 +59,43 @@ const ajax = {
       });
   },
   // ajax的文件上传需要单独处理
-  sendFile: (file, fileinfo, callback) => {},
+  sendFile: (file, fileinfo, callback) => {
+    let url = BASE_URL + '/user/file/upload';
+    // 参数必须通过FormData对象传递
+    let formdata = new FormData();
+    formdata.append('file', file);
+    formdata.append('fileinfo', fileinfo);
+
+    // 发起ajax请求
+    let promise = axios({
+      url: url,
+      method: 'POST',
+      data: formdata,
+      headers: {
+        token: loadToken(),
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    // 请求的结果
+    promise
+      .then((resp) => {
+        // 正确应答的情况
+        console.log('应答的结果：', resp.data);
+        // 保存token
+        saveToken(resp.data);
+        // 回调处理
+        callback(resp.data);
+      })
+      .catch((err) => {
+        // 处理发生错误的情况
+        console.error('应答错误：', err);
+        // 回调处理
+        callback({ success: false, message: '请求发生错误' });
+      });
+  },
 };
 
 export default ajax;
+
+export { ajax as ajax };
