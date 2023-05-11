@@ -6,7 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>文件管理</title>
+  <link rel="stylesheet" href="../iconfont/iconfont.css">
   <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
+
   <link rel="stylesheet" href="./css/file.css">
 
 </head>
@@ -14,9 +16,100 @@
 <body>
 
 
+  <div class="container-fluid">
+
+    <!-- 查询菜单 -->
+    <div class="row flex-row justify-content-end">
+
+      <div class="col-auto m-2">
+        <div class="input-group">
+          <span class="input-group-text iconfont">&#xe620;</span>
+          <input type="text" id="txtQContentType" class="form-control" placeholder="文件类型">
+        </div>
+      </div>
+
+      <div class="col-auto m-2">
+        <div class="input-group">
+          <span class="input-group-text iconfont">&#xe620;</span>
+          <input type="text" id="txtQFileinfo" class="form-control" placeholder="文件描述">
+        </div>
+      </div>
+
+      <div class="col-auto m-2">
+        <div class="input-group">
+          <span class="input-group-text iconfont">&#xe620;</span>
+          <input type="text" id="txtQFilename" class="form-control" placeholder="文件名">
+        </div>
+      </div>
+
+      <div class="col-auto m-2">
+        <div class="btn-group">
+          <span id="btnQuery" class="btn btn-primary">查询</span>
+          <span class="btn btn-danger">重置</span>
+          <span id="btnShowAdd" class="btn btn-info">上传</span>
+        </div>
+      </div>
 
 
 
+    </div>
+
+    <!-- 数据表格 -->
+    <div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>文件名</th>
+            <th>文件描述</th>
+            <th>文件大小</th>
+            <th>文件类型</th>
+            <th>上传时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+
+        <tbody id="tbData"></tbody>
+
+      </table>
+
+    </div>
+
+
+  </div>
+
+
+  <!-- 添加的对话框 -->
+  <div id="addDialog" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">上传文件</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="p-2">
+            <span id="btnBrowse" class="btn btn-primary">浏览文件...</span>
+            <span id="spFile"></span>
+          </div>
+
+          <div class="p-2">
+            <input id="txtAFileinfo" type="text" class="form-control" placeholder="文件描述">
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+          <button id="btnAdd" type="button" class="btn btn-primary">
+            上传
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <!-- alert信息 -->

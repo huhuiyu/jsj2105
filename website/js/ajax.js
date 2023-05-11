@@ -94,6 +94,18 @@ const ajax = {
         callback({ success: false, message: '请求发生错误' });
       });
   },
+  // 获取下载文件的url
+  getFileUrl: (fid) => {
+    return `${BASE_URL}/user/file/download?fid=${fid}`;
+  },
+  // 通过url地址获取fid信息
+  getFileUrlFid: (url) => {
+    return url.replace(BASE_URL + '/user/file/download?fid=', '');
+  },
+  // 判定是否为文件下载地址
+  isFileUrl: (url) => {
+    return url.startsWith(BASE_URL + '/user/file/download?fid=');
+  },
 };
 
 export default ajax;
