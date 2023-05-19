@@ -52,6 +52,7 @@ function showUserInfo() {
     用户简介：${tbUserInfo.info} <br>
     邮箱：${tbUserInfo.email}<br>
     手机号：${tbUserInfo.phone}<br>
+    accessKey:${tbUser.accessKey}<br>
   `;
 }
 
@@ -165,6 +166,43 @@ btnSaveEmail.addEventListener('click', () => {
     }
   );
 });
+
+//#endregion
+
+//#region 菜单的部分
+let divMenus = document.getElementById('divMenus');
+// 菜单项
+let menus = [
+  { icon: '&#xe655;', title: '用户记事本', href: '../manage/notepad.html' },
+  { icon: '&#xe658;', title: '文件管理', href: '../manage/file.html' },
+  { icon: '&#xe631;', title: '黑暗骑士', href: 'https://huhuiyu.top' },
+];
+
+function showMenus() {
+  divMenus.innerHTML = '';
+  for (let i = 0; i < menus.length; i++) {
+    const info = menus[i];
+    let div1 = document.createElement('div');
+    divMenus.append(div1);
+
+    let div2 = document.createElement('div');
+    let elei = document.createElement('i');
+    elei.classList.add('iconfont');
+    elei.innerHTML = info.icon;
+    div2.append(elei);
+    div1.append(div2);
+
+    let div3 = document.createElement('div');
+    div3.append(info.title);
+    div1.append(div3);
+
+    div1.addEventListener('click', () => {
+      location.href = info.href;
+    });
+  }
+}
+
+showMenus();
 
 //#endregion
 

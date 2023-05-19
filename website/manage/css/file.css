@@ -1,0 +1,18 @@
+#previewDialog .modal-body > div {
+  max-width: 60vw;
+  display: flex;
+  justify-content: center;
+}
+
+#previewDialog .modal-body > div img,
+#previewDialog .modal-body > div video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#previewDialog .modal-body > div audio {
+  display: block;
+  width: 10vw;
+  height: 3rem;
+}

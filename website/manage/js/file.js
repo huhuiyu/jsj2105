@@ -1,6 +1,65 @@
 import { ajax } from '../../js/ajax.js';
 import { tools } from '../../js/tools.js';
 
+//#region 公用方法的部分
+
+// 文件是否支持预览
+function isPreview(info) {
+  return (
+    info.contentType.startsWith('image/') ||
+    info.contentType.startsWith('audio/') ||
+    info.contentType.startsWith('video/')
+  );
+}
+
+function isImage(info) {
+  return info.contentType.startsWith('image/');
+}
+
+function isAudio(info) {
+  return info.contentType.startsWith('audio/');
+}
+
+function isVideo(info) {
+  return info.contentType.startsWith('video/');
+}
+
+//#endregion
+
+//#region 预览文件的部分
+// document.getElementById
+// document.querySelector
+// document.querySelectorAll('div')
+
+let previewDialog = document.getElementById('previewDialog');
+let previewDialogObj = new bootstrap.Modal(previewDialog);
+let previewDialogBody = document.querySelector(
+  '#previewDialog .modal-body > div'
+);
+
+function preview(info) {
+  previewDialogBody.innerHTML = '';
+  let ele;
+  // 三种预览模式
+  if (isImage(info)) {
+    ele = document.createElement('img');
+    ele.setAttribute('src', ajax.getFileUrl(info.fid));
+  } else if (isAudio(info)) {
+    ele = document.createElement('audio');
+    ele.setAttribute('src', ajax.getFileUrl(info.fid));
+    ele.setAttribute('controls', '');
+  } else if (isVideo(info)) {
+    ele = document.createElement('video');
+    ele.setAttribute('src', ajax.getFileUrl(info.fid));
+    ele.setAttribute('controls', '');
+  }
+  previewDialogBody.append(ele);
+
+  previewDialogObj.toggle();
+}
+
+//#endregion
+
 //#region 查询的部分
 
 let txtQContentType = document.getElementById('txtQContentType');
@@ -80,6 +139,17 @@ function showData() {
       download(info);
     });
     td.append(btn1);
+    // 预览的功能
+    if (isPreview(info)) {
+      let btn2 = document.createElement('span');
+      btn2.classList.add('btn', 'btn-sm', 'btn-info', 'me-1');
+      btn2.append('预览');
+      btn2.addEventListener('click', () => {
+        preview(info);
+      });
+      td.append(btn2);
+    }
+
     tr.append(td);
 
     tbData.append(tr);
@@ -95,8 +165,6 @@ function download(info) {
 //#endregion
 
 //#region 添加的部分
-
-//#endregion
 
 let btnShowAdd = document.getElementById('btnShowAdd');
 let addDialog = document.getElementById('addDialog');
@@ -147,6 +215,8 @@ btnAdd.addEventListener('click', () => {
     }
   });
 });
+
+//#endregion
 
 //#region alert对话框部分
 let liveToast = document.getElementById('liveToast');
