@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单</title>
+</head>
+
+<body>
+
+  <form action="./submit.html" method="get">
+    <input type="text" id="abc" name="name">
+
+    <label>
+      <input type="radio" name="sex" value="m">男
+    </label>
+    <label>
+      <input type="radio" name="sex" value="f">女
+    </label>
+    <label>
+      <input type="radio" name="sex" value="n">保密
+    </label>
+
+    <input type="checkbox" name="aihao" value="ah1">游泳
+    <input type="checkbox" name="aihao" value="ah2">游戏
+    <input type="checkbox" name="aihao" value="ah3">音乐
+
+
+    <input type="submit">
+  </form>
+
+  <h1>qs库处理get提交数据（地址栏）</h1>
+  <input type="text" id="txtId">
+  <input type="text" id="txtName">
+  <button id="txtSubmit">提交</button>
+
+
+  <script src="./form.js" type="module"></script>
+
+</body>
+
+</html>

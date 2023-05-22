@@ -149,6 +149,16 @@ function showData() {
       });
       td.append(btn2);
     }
+    // 复制地址的功能
+    let btn3 = document.createElement('span');
+    btn3.classList.add('btn', 'btn-sm', 'btn-info', 'me-1');
+    btn3.append('复制地址');
+    btn3.addEventListener('click', () => {
+      let url = ajax.getFileUrl(info.fid);
+      tools.copyText(url);
+      showAlert('地址复制完毕');
+    });
+    td.append(btn3);
 
     tr.append(td);
 

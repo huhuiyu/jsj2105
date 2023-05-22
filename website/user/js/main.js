@@ -8,6 +8,44 @@ let userOtherInfo = {};
 let imgLogo = document.getElementById('imgLogo');
 let divUserInfo = document.getElementById('divUserInfo');
 
+// 点击用户头像更换
+let file;
+
+imgLogo.addEventListener('click', () => {
+  tools.openFile((file) => {
+    if (!file) {
+      return;
+    }
+    // 上传文件
+    ajax.sendFile(file, '2105班头像上传', (data) => {
+      if (!data.success) {
+        showAlert(data.message);
+        return;
+      }
+      // 判定原来的地址是否为上传的文件地址
+      if (ajax.isFileUrl(tbUserInfo.img)) {
+        // 如果是需要删除
+        let delfid = ajax.getFileUrlFid(tbUserInfo.img);
+        ajax.send('/user/file/delete', { fid: delfid }, () => {});
+      }
+
+      // 获取上传文件的地址
+      let imgurl = ajax.getFileUrl(data.data.fid);
+      // 更新用户附加信息
+      let userinfo = JSON.parse(JSON.stringify(tbUserInfo));
+      userinfo.img = imgurl;
+      userinfo.nickname = tbUser.nickname;
+      ajax.send('/user/auth/updateUserInfo', userinfo, (sdata) => {
+        if (!sdata.success) {
+          showAlert(sdata.message);
+          return;
+        }
+        queryUserInfo();
+      });
+    });
+  });
+});
+
 // 查询登录用户的信息
 function queryUserInfo() {
   ajax.send('/user/auth/getUserInfo', {}, (data) => {

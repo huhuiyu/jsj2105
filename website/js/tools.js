@@ -57,6 +57,23 @@ let tools = {
 
     efile.click();
   },
+  // 复制文本到剪贴板
+  copyText: async (text) => {
+    // 新版本复制文本（剪贴板对象）
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch (ex) {}
+    // 旧版本
+    let input = document.createElement('input');
+    input.value = text;
+    document.body.appendChild(input);
+    input.focus();
+    input.select();
+    input.setSelectionRange(0, text.length); // 兼容苹果浏览器
+    document.execCommand('Copy');
+    document.body.removeChild(input);
+  },
 };
 
 let info = {};
